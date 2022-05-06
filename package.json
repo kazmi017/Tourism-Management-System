@@ -18,10 +18,6 @@
   "bugs": {
     "url": "https://github.com/themesberg/volt-react-dashboard/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/themesberg/volt-react-dashboard"
-  },
   "version": "1.0.1",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -37,7 +33,6 @@
     "chartist": "^0.11.4",
     "chartist-plugin-tooltips-updated": "^0.1.4",
     "moment-timezone": "^0.5.31",
-    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-bootstrap": "^2.3.1",
     "react-chartist": "^0.14.4",
