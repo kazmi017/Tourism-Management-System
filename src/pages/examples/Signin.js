@@ -69,9 +69,9 @@ export default () => {
                   <Button variant="outline-light" className="btn-icon-only btn-pill text-twitter me-2">
                     <FontAwesomeIcon icon={faTwitter} />
                   </Button>
-                  <Button variant="outline-light" className="btn-icon-only btn-pil text-dark">
+                  {/* <Button variant="outline-light" className="btn-icon-only btn-pil text-dark">
                     <FontAwesomeIcon icon={faGithub} />
-                  </Button>
+                  </Button> */}
                 </div>
                 <div className="d-flex justify-content-center align-items-center mt-4">
                   <span className="fw-normal">

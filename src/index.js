@@ -16,6 +16,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // core styles
 import "./scss/volt.scss";
