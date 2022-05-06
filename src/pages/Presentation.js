@@ -4,7 +4,7 @@ import Signin from "./examples/Signin";
 import { Col, Row, Form, Card, Button, Container, InputGroup } from '@themesberg/react-bootstrap';
 
 import { Routes } from "../routes";
-import './App.css';
+import './App.scss';
 
 
 export default function () {
