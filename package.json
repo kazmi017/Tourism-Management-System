@@ -54,7 +54,8 @@
     "simplebar-react": "^2.3.0"
   },
   "scripts": {
-    "start": "serve -s build",
+    
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "build-local": "PUBLIC_URL=./ react-scripts build",
     "test": "react-scripts test",
