@@ -16,7 +16,7 @@ export default () => {
       <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
         <Container>
           <p className="text-center">
-            <Card.Link as={Link} to={Routes.DashboardOverview.path} className="text-gray-700">
+            <Card.Link as={Link} to={Routes.Presentation.path} className="text-gray-700">
               <FontAwesomeIcon icon={faAngleLeft} className="me-2" /> Back to homepage
             </Card.Link>
           </p>
@@ -57,11 +57,11 @@ export default () => {
                   <FormCheck type="checkbox" className="d-flex mb-4">
                     <FormCheck.Input required id="terms" className="me-2" />
                     <FormCheck.Label htmlFor="terms">
-                      I agree to the <Card.Link>terms and conditions</Card.Link>
+                      I agree to the <Card.Link as={Link} to={Routes.Signin.path}>terms and conditions</Card.Link>
                     </FormCheck.Label>
                   </FormCheck>
 
-                  <Button variant="primary" type="submit" className="w-100">
+                  <Button variant="primary" type="submit" as={Link} to={Routes.DashboardOverview.path} className="w-100">
                     Sign up
                   </Button>
                 </Form>
@@ -75,9 +75,6 @@ export default () => {
                   </Button>
                   <Button variant="outline-light" className="btn-icon-only btn-pill text-twitter me-2">
                     <FontAwesomeIcon icon={faTwitter} />
-                  </Button>
-                  <Button variant="outline-light" className="btn-icon-only btn-pil text-dark">
-                    <FontAwesomeIcon icon={faGithub} />
                   </Button>
                 </div>
                 <div className="d-flex justify-content-center align-items-center mt-4">

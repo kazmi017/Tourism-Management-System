@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import Signin from "./examples/Signin";
+import Signin from "../pages/examples/Signin";
 import { Col, Row, Form, Card, Button, Container, InputGroup } from '@themesberg/react-bootstrap';
 
 
@@ -12,42 +12,7 @@ import './App.scss';
 export default function () {
     return (
         <>
-        <header className='header'>
-            <nav>
-                <div>
-                    <div className='nav-div'><span>Smart</span> Travelling</div>
-                    
-                        <div className='nav-div-1'>
-                            <ul className='ul'>
-                                <li>
-                                    <Link to='/'><span>Home</span></Link>
-                                </li>
-                                <li>
-                                    <Link as={Link} to={Routes.Signin.path} >Booking</Link>
-                                </li>
-                                <li>
-                                    <Link as={Link} to={Routes.Signin.path}>Make Your Travel</Link>
-                                </li>
-                                
-                                <li>
-                                    <Link as={Link} to={Routes.Signin.path}>To Do List</Link>
-                                </li>
-                                <li>
-                                    <Link as={Link} to={Routes.Signin.path}>About Us</Link>    
-                                </li>
-                                
-                            </ul>
-                        </div>
-                            <Card.Link as={Link} to={Routes.Signin.path} className="text-gray-700">
-                            <img src={process.env.PUBLIC_URL +'/user.jpg'} width="28px" className="download" />
-                            </Card.Link>
-                            {/* <Card.Link as={Link} to={Routes.Signin.path}>
-                            <img src={process.env.PUBLIC_URL +'/search.png'} width='65px' className="search" />    
-                            </Card.Link> */}
-                </div>
-            </nav>    
-            <div className='clr'></div> 
-        </header>   
+         
         
         <main>
             <section className='sec-1'>
@@ -84,7 +49,7 @@ export default function () {
                 </div>
                 <div className='clr'></div> 
             </section>
-            <section className='sec-3'>
+            {/* <section className='sec-3'>
                 <h2>About US</h2>
                 <div className='sec-3-div-1'>
                    <img src={process.env.PUBLIC_URL +'/user1.png'} width="100px" className="user-1" /> 
@@ -96,7 +61,7 @@ export default function () {
                 </div>
                 <button className='btn btn-2'>Click For More Information</button>
                 <div className='clr'></div> 
-            </section>
+            </section> */}
         </main>
         <footer>
             <div className='f-div-1'>
