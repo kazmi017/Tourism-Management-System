@@ -6,7 +6,7 @@ import { Col, Row, Form, Card, Button, Container, InputGroup } from '@themesberg
 
 
 import { Routes } from "../routes";
-import './App.scss';
+// import './App.scss';
 
 
 export default function () {

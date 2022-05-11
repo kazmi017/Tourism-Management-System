@@ -7,6 +7,8 @@ import { Row, Col, Nav, Form, Image, Navbar, Dropdown, Container, ListGroup, Inp
 
 import NOTIFICATIONS_DATA from "../data/notifications";
 import Profile3 from "../assets/img/team/profile-picture-3.jpg";
+import { Routes } from "../routes";
+import { Link } from "react-router-dom";
 
 
 export default (props) => {
@@ -108,8 +110,8 @@ export default (props) => {
 
                 <Dropdown.Divider />
 
-                <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faSignOutAlt} className="text-danger me-2" /> Logout
+                <Dropdown.Item as={Link} to={Routes.Presentation.path} className="fw-bold">
+                  <FontAwesomeIcon  icon={faSignOutAlt} className="text-danger me-2" /> Logout
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

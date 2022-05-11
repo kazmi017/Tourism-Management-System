@@ -18,7 +18,6 @@ $gray-800: #506690;
 $gray-900: #4A5073;
 $dark    : #262B40; 
 $black   : #2e3650;
-
 // fusv-disable
 $grays: (
   "100": $gray-100,
@@ -73,6 +72,8 @@ $primary:       #262B40;
 $secondary:     #61DAFB;
 $tertiary:      #1B998B;
 $quaternary:    #C96480;
+$order:         #4169e1;
+$dblack:        rgb(27, 25, 25);
 
 // Series names and colors. This can be extended or customized as desired. Just add more series and colors.
 $ct-series-names: (a, b, c, d, e, f, g) !default;
@@ -184,7 +185,9 @@ $theme-colors: map-merge((
   "paypal":       $paypal,
   "behance":      $behance,
   "reddit" :      $reddit,  
-  "github":       $github
+  "github":       $github,
+  "order":        $order,
+  "dblack":       $dblack,
 ), $theme-colors);
 
 

@@ -61,7 +61,7 @@ export default () => {
                     </FormCheck.Label>
                   </FormCheck>
 
-                  <Button variant="primary" type="submit" as={Link} to={Routes.DashboardOverview.path} className="w-100">
+                  <Button variant="order" type="submit" as={Link} to={Routes.DashboardOverview.path} className="w-100">
                     Sign up
                   </Button>
                 </Form>
