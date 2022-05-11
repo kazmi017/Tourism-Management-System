@@ -252,7 +252,7 @@ export const ProgressTrackWidget = () => {
         <Progress title="Pixel - Design System" color="danger" icon={faAngular} percentage={60} />
         <Progress title="Spaces - Listings Template" color="tertiary" icon={faVuejs} percentage={45} />
         <Progress title="Stellar - Dashboard" color="info" icon={faReact} percentage={35} />
-        <Progress last title="Volt - Dashboard" color="purple" icon={faBootstrap} percentage={34} />
+        <Progress last title="Dashboard" color="purple" icon={faBootstrap} percentage={34} />
       </Card.Body>
     </Card>
   );
