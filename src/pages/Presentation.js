@@ -66,7 +66,7 @@ export default function () {
                 </Card>
                 <Card>
                 <Card.Link as={Link} style={{ width: '19rem' }}>
-                    <Card.Img src={'http://triphub.pk/image/general/QGZ5At5W_jr.jpg'} />
+                    <Card.Img src={process.env.PUBLIC_URL +'./t1.jpg'} />
                       <Card.Body>
                         <Card.Title>Car Booking</Card.Title>
                         <Card.Text>
