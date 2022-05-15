@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
 function PlaceCard(props) {
     const {src,alt,place,loc} = props;
     return (
-          <Card className="rounded-pill" >
+          <Card className=" rounded-pill" >
             <Card.Img
               style={{height:"20rem" }}
               variant="top"

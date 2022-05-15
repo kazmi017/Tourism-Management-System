@@ -19,7 +19,7 @@ export default () => {
         <PlaceCard src='./kumrat.jpg' alt='Kumrat' place='FairyLand' loc='Kumrat, Swat'/>
       </Col>
       <Col md={3} className="mt-2">
-        <PlaceCard src='./chitral.jpg' alt='Chitral' place='The Place of Beauty & Peace' loc='Chitral, Swat'/>
+        <PlaceCard  src='./chitral.jpg' alt='Chitral' place='The Place of Beauty & Peace' loc='Chitral, Swat'/>
       </Col>
       <Col md={3} className="mt-2">
         <PlaceCard src='./gilgit.jpg' alt='Gilgit' place='The Land of Peaks & Streams' loc='Gilgit, GB'/>
