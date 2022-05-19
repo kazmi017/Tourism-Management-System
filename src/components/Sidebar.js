@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faHistory } from "@fortawesome/free-solid-svg-icons";
+import { faBicycle, faHome, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faHistory, faCar, faCaretSquareDown } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -104,7 +104,10 @@ export default (props = {}) => {
               <NavItem title="Solo Travel" icon={faHandHoldingUsd} link={Routes.Solo.path} />
               <NavItem title="History" icon={faHistory} link={Routes.History.path} />
               <NavItem title="Settings" icon={faCog} link={Routes.Settings.path} />
-              
+              <Dropdown.Divider className="my-3 border-indigo" />
+              <NavItem title="Car Booking" link={Routes.Car.path} icon={faCar} />
+              <NavItem title="Trip Booking" link={Routes.Trip.path} icon={faBicycle} />
+              <NavItem title="Hotel Booking" link={Routes.Hotel.path} icon={faHome} />
               <Dropdown.Divider className="my-3 border-indigo" />
               <NavItem title="Logout" link={Routes.Presentation.path} image={ReactHero} />
               

@@ -44,6 +44,9 @@ import Toasts from "./components/Toasts";
 import Solo from './dashboard/Solo';
 import Solob from './dashboard/Solob';
 import Historry from './dashboard/Historry';
+import Car from './dashboard/Car';
+import Trip from './dashboard/Trip';
+import Hotel from './dashboard/Hotel';
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -110,6 +113,9 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Booking.path} component={Booking} />
     <RouteWithSidebar exact path={Routes.Solo.path} component={Solo} />
     <RouteWithSidebar exact path={Routes.Solob.path} component={Solob} />
+    <RouteWithSidebar exact path={Routes.Car.path} component={Car} />
+    <RouteWithSidebar exact path={Routes.Trip.path} component={Trip} />
+    <RouteWithSidebar exact path={Routes.Hotel.path} component={Hotel} />
     <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
     <RouteWithSidebar exact path={Routes.History.path} component={Historry} />
 
