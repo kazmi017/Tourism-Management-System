@@ -1,5 +1,5 @@
 
-import React from "react";
+import React,{useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -9,8 +9,65 @@ import { Link } from 'react-router-dom';
 import { Routes } from "../../routes";
 import BgImage from "../../assets/img/illustrations/signin.svg";
 
+import axios from 'axios';
 
 export default () => {
+
+  const [fileName, setFileName] = useState("Upload Boundary File");
+
+  const [user , setUser] = useState( {
+    fName:'',
+    lName:'',
+    email:'',
+    dob:'',
+    password:''
+})
+const [photo,setphoto]=useState(null);
+
+const handleImage= (e) =>{
+  setphoto(
+    e.target.files[0]
+
+  )
+  console.log(e.target.files[0])
+ 
+}
+
+
+const handleChange= e =>{
+    const { name , value } = e.target;
+    console.log(user);
+    setUser({
+        ...user,
+        [name]:value
+    })
+   
+}
+
+const register = async (e) =>{
+  e.preventDefault();
+    const {fName , lName , email ,dob , password,photo}= user
+    const data = new FormData()
+    data.append('fName', user.fName)
+    data.append('lName', user.lName)
+    data.append('email', user.email)
+    data.append('dob', user.dob)
+    data.append('password', user.password)
+    data.append('photo', photo)
+    console.log("User",data)
+    try {
+      const res = await axios({
+          method: "post",
+          baseURL: `http://localhost:5001/SignUp`,
+          headers: { 'Content-Type': 'multipart/form-data' },
+          data: data,
+      });
+      console.log('File uploaded', res.data);
+  } catch (err) {
+      console.error('Failed to upload file', err);
+  }
+}
+ 
   return (
     <main>
       <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
@@ -26,42 +83,64 @@ export default () => {
                 <div className="text-center text-md-center mb-4 mt-md-0">
                   <h3 className="mb-0">Create an account</h3>
                 </div>
-                <Form className="mt-4">
+                <Form onSubmit={register} className="mt-4">
+                <input type="file" name="file" onChange={handleImage}/>
                   <Form.Group id="email" className="mb-4">
                     <Form.Label>Your Email</Form.Label>
                     <InputGroup>
                       <InputGroup.Text>
                         <FontAwesomeIcon icon={faEnvelope} />
                       </InputGroup.Text>
-                      <Form.Control autoFocus required type="email" placeholder="example@company.com" />
+                      <Form.Control name="email" onChange={handleChange} autoFocus required type="email" placeholder="example@company.com" />
                     </InputGroup>
                   </Form.Group>
+                  <Form.Group id="name" className="mb-4">
+                    <Form.Label>Your Name</Form.Label>
+                    <InputGroup>
+                      <InputGroup.Text>
+                        <FontAwesomeIcon icon={faEnvelope} />
+                      </InputGroup.Text>
+                      <Form.Control name="fName" onChange={handleChange} autoFocus required type="text" placeholder="Hamza" />
+                    </InputGroup>
+                  </Form.Group>
+                  
+                  <Form.Group id="namel" className="mb-4">
+                    <Form.Label>Your Last Name</Form.Label>
+                    <InputGroup>
+                      <InputGroup.Text>
+                        <FontAwesomeIcon icon={faUnlockAlt} />
+                      </InputGroup.Text>
+                      <Form.Control name="lName" onChange={handleChange} required type="text" placeholder="Shah" />
+                    </InputGroup>
+                  </Form.Group>
+
+                  <Form.Group id="dob" className="mb-4">
+                    <Form.Label>Your DOB</Form.Label>
+                    <InputGroup>
+                      <InputGroup.Text>
+                        <FontAwesomeIcon icon={faUnlockAlt} />
+                      </InputGroup.Text>
+                      <Form.Control name="dob" onChange={handleChange} required type="text" placeholder="2018-07-22" />
+                    </InputGroup>
+                  </Form.Group>
+
                   <Form.Group id="password" className="mb-4">
                     <Form.Label>Your Password</Form.Label>
                     <InputGroup>
                       <InputGroup.Text>
                         <FontAwesomeIcon icon={faUnlockAlt} />
                       </InputGroup.Text>
-                      <Form.Control required type="password" placeholder="Password" />
-                    </InputGroup>
-                  </Form.Group>
-                  <Form.Group id="confirmPassword" className="mb-4">
-                    <Form.Label>Confirm Password</Form.Label>
-                    <InputGroup>
-                      <InputGroup.Text>
-                        <FontAwesomeIcon icon={faUnlockAlt} />
-                      </InputGroup.Text>
-                      <Form.Control required type="password" placeholder="Confirm Password" />
+                      <Form.Control name="password" onChange={handleChange} required type="password" placeholder="Password" />
                     </InputGroup>
                   </Form.Group>
                   <FormCheck type="checkbox" className="d-flex mb-4">
-                    <FormCheck.Input required id="terms" className="me-2" />
+                    <FormCheck.Input id="terms" className="me-2" />
                     <FormCheck.Label htmlFor="terms">
-                      I agree to the <Card.Link as={Link} to={Routes.Signin.path}>terms and conditions</Card.Link>
+                      I agree to <Card >Surf and Enjoy</Card>
                     </FormCheck.Label>
                   </FormCheck>
 
-                  <Button variant="order" type="submit" as={Link} to={Routes.DashboardOverview.path} className="w-100">
+                  <Button variant="order" type="submit" className="w-100">
                     Sign up
                   </Button>
                 </Form>

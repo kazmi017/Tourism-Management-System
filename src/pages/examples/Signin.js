@@ -1,5 +1,5 @@
 
-import React from "react";
+import React,{useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -9,8 +9,35 @@ import { Link } from 'react-router-dom';
 import { Routes } from "../../routes";
 import BgImage from "../../assets/img/illustrations/signin.svg";
 
+import axios from 'axios';
 
 export default () => {
+  const [user , setUser] = useState( {
+    email:'',
+    password:''
+})
+
+const handleChange= e =>{
+    const { name , value } = e.target;
+    console.log(name , value);
+    setUser({
+        ...user,
+        [name]:value
+    })
+   
+}
+
+const login = (event) =>{
+  event.preventDefault();
+    axios.post('http://localhost:5000/SignIn', user)
+    .then(res => {
+        alert(res.data.message)
+        if(alert===true){
+            console.log("True");
+        }
+
+    })
+}
   return (
     <main>
       <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
@@ -26,14 +53,14 @@ export default () => {
                 <div className="text-center text-md-center mb-4 mt-md-0">
                   <h3 className="mb-0">Sign in to our platform</h3>
                 </div>
-                <Form className="mt-4">
+                <Form onSubmit={login} className="mt-4">
                   <Form.Group id="email" className="mb-4">
                     <Form.Label>Your Email</Form.Label>
                     <InputGroup>
                       <InputGroup.Text>
                         <FontAwesomeIcon icon={faEnvelope} />
                       </InputGroup.Text>
-                      <Form.Control autoFocus required type="email" placeholder="example@company.com" />
+                      <Form.Control autoFocus name="email" onChange={handleChange} required type="email" placeholder="example@company.com" />
                     </InputGroup>
                   </Form.Group>
                   <Form.Group>
@@ -43,7 +70,7 @@ export default () => {
                         <InputGroup.Text>
                           <FontAwesomeIcon icon={faUnlockAlt} />
                         </InputGroup.Text>
-                        <Form.Control required type="password" placeholder="Password" />
+                        <Form.Control name="password" onChange={handleChange} required type="password" placeholder="Password" />
                       </InputGroup>
                     </Form.Group>
                     <div className="d-flex justify-content-between align-items-center mb-4">
@@ -54,7 +81,7 @@ export default () => {
                       <Card.Link className="small text-end">Lost password?</Card.Link>
                     </div>
                   </Form.Group>
-                  <Button variant="order" type="submit" as={Link} to={Routes.DashboardOverview.path} className="w-100">
+                  <Button variant="order" type="submit" className="w-100">
                     Sign in
                   </Button>
                 </Form>
