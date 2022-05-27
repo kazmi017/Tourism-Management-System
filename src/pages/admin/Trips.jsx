@@ -100,7 +100,17 @@ export default function () {
             <Form.Group className="mb-3">
               <Form.Control name="description"
               onChange={e => onChange(e)} 
-              id="desc" placeholder="Trip Descriptiom" />
+              id="desc" placeholder="Trip Description" />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Control name="src"
+              onChange={e => onChange(e)} 
+              id="src" placeholder="Trip Source" />
+               <Form.Group className="mb-3">
+              <Form.Control name="seats"
+              onChange={e => onChange(e)} 
+              id="seats" placeholder="Total Seats" />
+            </Form.Group>
             </Form.Group>
             </Col>
           </fieldset>
