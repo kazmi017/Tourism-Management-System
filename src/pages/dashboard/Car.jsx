@@ -88,7 +88,7 @@ export default function () {
             </Autocomplete>
             <Autocomplete>
           <Form.Group className="mb-3">
-              <Form.Control id="name" ref={destiantionRef} onChange={calculateRoute} placeholder="Destinition" />
+              <Form.Control id="name" ref={destiantionRef} placeholder="Destinition" />
             </Form.Group>
             </Autocomplete>
             <h3>Enter Your Needs Detail</h3>

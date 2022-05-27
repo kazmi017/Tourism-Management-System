@@ -11,6 +11,15 @@ export const Routes = {
     Hotel:{path:"/dashboard/hotel"},
     Settings: { path: "/settings" },
     History: { path: "/history" },
+
+    Admin:{path:"/admin/overview"},
+    Trips:{path:"/admin/trip"},
+    Cars:{path:"/admin/car"},
+    Hotels:{path:"/admin/hotel"},
+    Notifications:{path:"/admin/notifications"},
+    Users:{path:"/admin/users"},
+
+
     BootstrapTables: { path: "/tables/bootstrap-tables" },
     Billing: { path: "/examples/billing" },
     Invoice: { path: "/examples/invoice" },

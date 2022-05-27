@@ -47,6 +47,13 @@ import Historry from './dashboard/Historry';
 import Car from './dashboard/Car';
 import Trip from './dashboard/Trip';
 import Hotel from './dashboard/Hotel';
+import OverView from './admin/OverView';
+import SidebarAdmin from '../components/SidebarAdmin';
+import Trips from './admin/Trips';
+import Notifs from './admin/Notifs';
+import Cars from './admin/Cars';
+import Hotels from './admin/Hotels';
+import Users from './admin/Users';
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -97,6 +104,40 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
   );
 };
 
+const AdminRouteWithSidebar = ({ component: Component, ...rest }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const localStorageIsSettingsVisible = () => {
+    return localStorage.getItem('settingsVisible') === 'false' ? false : true
+  }
+
+  const [showSettings, setShowSettings] = useState(localStorageIsSettingsVisible);
+
+  const toggleSettings = () => {
+    setShowSettings(!showSettings);
+    localStorage.setItem('settingsVisible', !showSettings);
+  }
+
+  return (
+    <Route {...rest} render={props => (
+      <>
+        <Preloader show={loaded ? false : true} />
+        <SidebarAdmin />
+
+        <main className="content">
+          <Component {...props} />
+        </main>
+      </>
+    )}
+    />
+  );
+};
+
 export default () => (
   <Switch>
     <RouteWithLoader exact path={Routes.Presentation.path} component={Presentation} />
@@ -107,6 +148,14 @@ export default () => (
     <RouteWithLoader exact path={Routes.Lock.path} component={Lock} />
     <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
     <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />
+    
+    <AdminRouteWithSidebar exact path={Routes.Admin.path} component={OverView} />
+    <AdminRouteWithSidebar exact path={Routes.Trips.path} component={Trips} />
+    <AdminRouteWithSidebar exact path={Routes.Hotels.path} component={Hotels} />
+    <AdminRouteWithSidebar exact path={Routes.Cars.path} component={Cars} />
+    <AdminRouteWithSidebar exact path={Routes.Notifications.path} component={Notifs} />
+    <AdminRouteWithSidebar exact path={Routes.Users.path} component={Users} />
+
 
     {/* pages */}
     <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />

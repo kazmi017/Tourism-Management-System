@@ -48,7 +48,7 @@ export default function () {
                     </Col>
                 </Card.Text>
                 <Row md={2}>
-                <Button variant="primary">Book</Button> {/*I'll have to add nayapay account to recieve amount*/}
+                <Button  variant="primary">Book</Button> 
                 <Card.Text className="border-bottom mt-2 d-flex flex-row justify-content-center text-center">
                   5124
                 </Card.Text>
