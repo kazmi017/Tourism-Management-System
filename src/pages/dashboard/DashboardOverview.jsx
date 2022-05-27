@@ -22,7 +22,7 @@ export default () => {
   useEffect(()=>{
     var config = {
       method: 'get',
-      url: 'http://localhost:5002/Trip',
+      url: 'https://vast-journey-06976.herokuapp.com/Trip',
       headers: { }
     };
       

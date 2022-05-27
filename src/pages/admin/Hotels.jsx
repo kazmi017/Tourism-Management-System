@@ -21,7 +21,7 @@ export default function () {
     useEffect(()=>{
         var config = {
             method: 'get',
-            url: 'http://localhost:5002/Hotel',
+            url: 'https://vast-journey-06976.herokuapp.com/Hotel',
             headers: { }
           };
           
@@ -42,7 +42,7 @@ export default function () {
       console.log(data);
       var config = {
         method: 'post',
-        url: 'http://localhost:5002/Hotel',
+        url: 'https://vast-journey-06976.herokuapp.com/Hotel',
         headers: { 
           'Content-Type': 'application/json'
         },

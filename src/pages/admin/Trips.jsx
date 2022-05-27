@@ -20,7 +20,7 @@ export default function () {
   useEffect(()=>{
     var config = {
       method: 'get',
-      url: 'http://localhost:5002/Trip',
+      url: 'https://vast-journey-06976.herokuapp.com/Trip',
       headers: { }
     };
     
@@ -49,7 +49,7 @@ export default function () {
       console.log(data)
       var config = {
         method: 'post',
-        url: 'http://localhost:5002/Trip',
+        url: 'https://vast-journey-06976.herokuapp.com/Trip',
         headers: { 
           'Content-Type': 'application/json'
         },
