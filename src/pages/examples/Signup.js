@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from '@themesberg/react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { login } from "../../features/userSlice";
 
 import { Routes } from "../../routes";
 import BgImage from "../../assets/img/illustrations/signin.svg";
@@ -12,9 +14,8 @@ import BgImage from "../../assets/img/illustrations/signin.svg";
 import axios from 'axios';
 
 export default () => {
-
-  const [fileName, setFileName] = useState("Upload Boundary File");
-
+  const dispatch=useDispatch();
+  const history=useHistory()
   const [user , setUser] = useState( {
     fName:'',
     lName:'',
@@ -24,14 +25,7 @@ export default () => {
 })
 const [photo,setphoto]=useState(null);
 
-const handleImage= (e) =>{
-  setphoto(
-    e.target.files[0]
 
-  )
-  console.log(e.target.files[0])
- 
-}
 
 
 const handleChange= e =>{
@@ -46,23 +40,19 @@ const handleChange= e =>{
 
 const register = async (e) =>{
   e.preventDefault();
-    const {fName , lName , email ,dob , password,photo}= user
-    const data = new FormData()
-    data.append('fName', user.fName)
-    data.append('lName', user.lName)
-    data.append('email', user.email)
-    data.append('dob', user.dob)
-    data.append('password', user.password)
-    data.append('photo', photo)
-    console.log("User",data)
+ 
     try {
-      const res = await axios({
-          method: "post",
-          baseURL: `http://localhost:5001/SignUp`,
-          headers: { 'Content-Type': 'multipart/form-data' },
-          data: data,
-      });
-      console.log('File uploaded', res.data);
+      axios.post('https://vast-journey-06976.herokuapp.com/SignUp', user)
+    .then(res=>{
+      if(res.data.message==="Successfully Registered"){
+      dispatch(login({
+        email:user.email,
+        isloggedIn:true,
+      }))
+    history.push(Routes.DashboardOverview.path)
+    }
+      }
+      )
   } catch (err) {
       console.error('Failed to upload file', err);
   }
@@ -84,7 +74,6 @@ const register = async (e) =>{
                   <h3 className="mb-0">Create an account</h3>
                 </div>
                 <Form onSubmit={register} className="mt-4">
-                <input type="file" name="file" onChange={handleImage}/>
                   <Form.Group id="email" className="mb-4">
                     <Form.Label>Your Email</Form.Label>
                     <InputGroup>

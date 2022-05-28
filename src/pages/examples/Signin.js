@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from '@themesberg/react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { login } from "../../features/userSlice";
 
 import { Routes } from "../../routes";
 import BgImage from "../../assets/img/illustrations/signin.svg";
@@ -12,6 +14,9 @@ import BgImage from "../../assets/img/illustrations/signin.svg";
 import axios from 'axios';
 
 export default () => {
+  const dispatch=useDispatch();
+  const history=useHistory()
+  const[cond,setC]=useState(0)
   const [user , setUser] = useState( {
     email:'',
     password:''
@@ -27,16 +32,20 @@ const handleChange= e =>{
    
 }
 
-const login = (event) =>{
-  event.preventDefault();
-    axios.post('http://localhost:5000/SignIn', user)
-    .then(res => {
-        alert(res.data.message)
-        if(alert===true){
-            console.log("True");
-        }
-
-    })
+const log = (e) =>{
+  e.preventDefault();
+    axios.post('https://vast-journey-06976.herokuapp.com/SignIn', user)
+    .then(res=>{
+      if(res.data.message==="Login Successful"){
+      dispatch(login({
+        email:user.email,
+        isloggedIn:true,
+      }))
+    history.push(Routes.DashboardOverview.path)
+    }
+      }
+      )
+    
 }
   return (
     <main>
@@ -53,7 +62,7 @@ const login = (event) =>{
                 <div className="text-center text-md-center mb-4 mt-md-0">
                   <h3 className="mb-0">Sign in to our platform</h3>
                 </div>
-                <Form onSubmit={login} className="mt-4">
+                <Form onSubmit={log} className="mt-4">
                   <Form.Group id="email" className="mb-4">
                     <Form.Label>Your Email</Form.Label>
                     <InputGroup>

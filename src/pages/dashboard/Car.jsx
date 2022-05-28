@@ -1,4 +1,4 @@
-import React,{useState,useRef} from 'react';
+import React,{useState,useRef,useEffect} from 'react';
 import {Link,useHistory} from 'react-router-dom'
 
 import { Col, Row, Form, Card, Button, Container, InputGroup, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
@@ -15,7 +15,29 @@ import {
 
 import Map from '../components/Map';
 
+import axios from 'axios';
+
 export default function () {
+  const [resp,setR]=useState([])
+
+  useEffect(()=>{
+    var config = {
+      method: 'get',
+      url: 'https://vast-journey-06976.herokuapp.com/Car',
+      headers: { }
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(response.data);
+      setR(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  },[]);
+
+
     const [counter, setCounter] = useState(0);
   const increase = () => {
     setCounter(count => count + 1);
@@ -103,64 +125,17 @@ export default function () {
                 <Button onClick={reset}>Reset</Button>
             </Row>
             </Col>
-            <Form.Group className="mb-3">
-              <Form.Select id="power" onFocus={calculateRoute} placeholder="Car Engine i.e, 1000cc">
-              <option>660cc</option>
-              <option>1000cc</option>
-              <option>1300cc</option>
-              <option>1500cc</option>
-              <option>1800cc</option>
-              </Form.Select>
-            </Form.Group>
             <Row>
+            {resp.map(item => (
             <Card style={{ width: '12rem' ,height:'10rem'}}>
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-                {/* <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
-                </Card.Text> */} 
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link>
+                <Card.Title>{item.name}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{item.engine}cc</Card.Subtitle> 
+                <Card.Text>Rent is {item.rent} per day.</Card.Text>
+                <Card.Link href="#"></Card.Link>
               </Card.Body>
-            </Card>
-            <Card style={{ width: '12rem' ,height:'10rem'}}>
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-                {/* <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
-                </Card.Text> */}
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link>
-              </Card.Body>
-            </Card>
-            <Card style={{ width: '12rem' ,height:'10rem'}}>
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-                {/* <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
-                </Card.Text> */}
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link>
-              </Card.Body>
-            </Card>
-            <Card style={{ width: '12rem' ,height:'10rem'}}>
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-                {/*  <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
-                </Card.Text> */}
-                <Card.Link href="#">Card Link</Card.Link>
-              </Card.Body>
-            </Card>
-            
+            </Card>  
+            ))}          
             </Row>
             
             <Button type="submit">Submit</Button>
