@@ -14,7 +14,8 @@ import { useEffect } from 'react';
 export default function () {
 
     const [status,setStatus]=useState("");
-    const [data,setData]=useState({})
+    const [data,setData]=useState({
+    })
     const [resp,setR]=useState([])
 
   useEffect(()=>{

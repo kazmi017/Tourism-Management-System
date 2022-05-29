@@ -16,9 +16,14 @@ import {
 import Map from '../components/Map';
 
 import axios from 'axios';
+import {store} from "../../store/store"
 
 export default function () {
   const [resp,setR]=useState([])
+  const [data,setD]=useState({
+    email:store.getState()["user"]["email"]
+  })
+  const onChange = e => setD({ ...data, [e.target.name]: e.target.value });
 
   useEffect(()=>{
     var config = {
@@ -50,8 +55,10 @@ export default function () {
     setCounter(0)
   }
   
+
+   
+
     const history=useHistory()
-    const[distanc,setD]=useState(null)
     const [directionsResponse, setDirectionsResponse] = useState(null)
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
@@ -85,12 +92,45 @@ export default function () {
       setDirectionsResponse(results)
       setDistance("Distance is "+results.routes[0].legs[0].distance.text)
       setDuration("Time Duration is "+results.routes[0].legs[0].duration.text)
+      setD({
+        ...data,
+        orgin:originRef.current.value,
+        destination:destiantionRef.current.value,
+        days:counter
+      })
+    }
+
+    const clicked=(item)=>{
+      setD({
+        ...data,
+        name:item.name,
+        engine:item.engine,
+        rent:item.rent
+      })
+      console.log(data)
     }
 
     const handlesubmit=(event)=>{
         event.preventDefault();
         // history.push(Routes.Solob.path)
-        console.log(originRef.current.value+destiantionRef.current.value)
+        console.log(data)
+        var config = {
+          method: 'post',
+          url: 'https://vast-journey-06976.herokuapp.com/CarBook',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : data
+        };
+        axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          alert(response.data.message)
+          history.push(Routes.Car.path)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
     return (
         <>  
@@ -114,7 +154,7 @@ export default function () {
             </Form.Group>
             </Autocomplete>
             <h3>Enter Your Needs Detail</h3>
-            <Col className="mt-2 mb-2">
+            <Col onFocus={calculateRoute} className="mt-2 mb-2">
                 <h4>Days:</h4>
             <Row md={4} className="d-flex flex-row justify-content-center text-center" >
             <Button className="control__btn" onClick={increase}>+</Button>
@@ -127,7 +167,7 @@ export default function () {
             </Col>
             <Row>
             {resp.map(item => (
-            <Card style={{ width: '12rem' ,height:'10rem'}}>
+            <Card onClick={()=>clicked(item)} style={{ width: '12rem' ,height:'10rem'}}>
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{item.engine}cc</Card.Subtitle> 

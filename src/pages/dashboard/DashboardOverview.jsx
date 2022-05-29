@@ -8,16 +8,18 @@ import { DatePicker, RangePicker, theme } from 'react-trip-date';
 import {ThemeProvider} from 'styled-components';
 import themeStyle from "../../assets/syntax-themes/ghcolors.json";
 
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import PlaceCard from "../components/PlaceCard";
 import CalendarCard from "../components/CalendarCard";
 
 
 import axios from 'axios';
+import { Routes } from "../../routes";
 
 export default () => {
 
   const [resp,setR]=useState([])
+  const history=useHistory()
 
   useEffect(()=>{
     var config = {
@@ -41,8 +43,13 @@ export default () => {
     <>
     <Row>
     {resp.map(item => (
-      <Col md={3} className="mt-2">
-        <PlaceCard src={item.src} alt='Kumrat' place={item.name} loc={item.place}/>
+      <Col onClick={()=>{history.push({
+        pathname: Routes.Trip.path,
+        state: {  // location state
+          data: item, 
+        },
+      })}} md={3} className="mt-2">
+        <PlaceCard  src={item.src} alt='Kumrat' place={item.name} loc={item.place}/>
       </Col>
     ))}
       {/* <Col md={3} className="mt-2">

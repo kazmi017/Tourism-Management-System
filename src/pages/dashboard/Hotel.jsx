@@ -10,11 +10,15 @@ import { Routes } from "../../routes";
 import PlaceCard from '../components/PlaceCard';
 
 import axios from 'axios';
+import {store} from "../../store/store"
 
 export default function () {
   const history=useHistory()
   const [resp,setR]=useState([])
-  const [data,setD]=useState([])
+  const[o,seto]=useState("Islamabad")
+  const [data,setD]=useState({
+    email:store.getState()["user"]["email"]
+  })
   const onChange = e => setD({ ...data, [e.target.name]: e.target.value });
 
   useEffect(()=>{
@@ -32,10 +36,10 @@ export default function () {
     .catch(function (error) {
       console.log(error);
     });
-  },[]);
+  },[0]);
     /** @type React.MutableRefObject<HTMLInputElement> */
     const originRef = useRef()
-    const[o,seto]=useState("Islamabad")
+    
 
 
     const set=()=>{
@@ -59,7 +63,7 @@ export default function () {
         .then(function (response) {
           console.log(JSON.stringify(response.data));
           alert(response.data.message)
-          history.push(Routes.History.path)
+          history.push(Routes.Hotel.path)
         })
         .catch(function (error) {
           console.log(error);
@@ -69,7 +73,13 @@ export default function () {
     }
 
     const clicked=(item)=>{
-      setD(item)
+      setD({
+        ...data,
+        name:item.name,
+        rent:item.rent,
+        place:item.place
+      
+      })
       console.log(data)
     }
 
