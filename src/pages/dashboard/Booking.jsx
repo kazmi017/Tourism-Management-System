@@ -1,9 +1,8 @@
+import { Button, Card } from '@themesberg/react-bootstrap';
 import React from 'react';
-import {Link} from 'react-router-dom'
-import { Col, Row, Form, Card, Button, Container, InputGroup, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
-import { Routes } from "../../routes";
 
 
 export default function () {

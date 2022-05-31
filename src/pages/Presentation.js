@@ -1,11 +1,10 @@
+import { Button, Card, Container, Nav, Navbar, NavDropdown } from '@themesberg/react-bootstrap';
 import React from 'react';
-import {Link} from 'react-router-dom'
-import Signin from "./examples/Signin";
-import { Col, Row, Form, Card, Button, Container, InputGroup, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
-
+import { Link } from 'react-router-dom';
+import { Routes } from "../routes";
 import "../scss/volt.scss";
 
-import { Routes } from "../routes";
+
 // import './App.scss';
 
 

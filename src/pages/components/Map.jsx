@@ -1,14 +1,10 @@
-import { Col, Row, Form, Card, Button, Container,
-   InputGroup, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
-
 import {
-  useJsApiLoader,
-  GoogleMap,
-  Marker,
-  Autocomplete,
-  DirectionsRenderer,
-} from '@react-google-maps/api'
-import React,{ useRef, useState } from 'react'
+  DirectionsRenderer, GoogleMap,
+  Marker, useJsApiLoader
+} from '@react-google-maps/api';
+import { Col } from '@themesberg/react-bootstrap';
+import React from 'react';
+
 
 
 

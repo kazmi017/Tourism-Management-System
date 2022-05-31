@@ -103,7 +103,6 @@ export default (props = {}) => {
               <NavItem title="Booking" link={Routes.Booking.path} icon={faInbox} />
               <NavItem title="Solo Travel" icon={faHandHoldingUsd} link={Routes.Solo.path} />
               <NavItem title="History" icon={faHistory} link={Routes.History.path} />
-              <NavItem title="Settings" icon={faCog} link={Routes.Settings.path} />
               <Dropdown.Divider className="my-3 border-indigo" />
               <NavItem title="Car Booking" link={Routes.Car.path} icon={faCar} />
               <NavItem title="Trip Booking" link={Routes.Trip.path} icon={faBicycle} />

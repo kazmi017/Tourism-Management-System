@@ -1,15 +1,12 @@
-import React,{useState,useRef} from 'react';
-import {Link,useHistory} from 'react-router-dom'
-
-import { Col, Row, Form, Card, Button, ListGroup, Table, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
-
-
-import { Routes } from "../../routes";
-import Admincard from '../components/Admincard';
-
-
+import { Button, Card, Col, Form, Row, Table } from '@themesberg/react-bootstrap';
 import axios from 'axios';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+
+
+
+
 
 export default function () {
 
@@ -22,6 +19,7 @@ export default function () {
     var config = {
       method: 'get',
       url: 'https://vast-journey-06976.herokuapp.com/Trip',
+      // url: 'https://vast-journey-06976.herokuapp.com/Trip',
       headers: { }
     };
     
@@ -51,6 +49,7 @@ export default function () {
       var config = {
         method: 'post',
         url: 'https://vast-journey-06976.herokuapp.com/Trip',
+        // url: 'https://vast-journey-06976.herokuapp.com/Trip',
         headers: { 
           'Content-Type': 'application/json'
         },

@@ -1,22 +1,18 @@
-import React,{useState,useRef,useEffect} from 'react';
-import {Link,useHistory} from 'react-router-dom'
-
-import { Col, Row, Form, Card, Button, Container, InputGroup, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
-
-
-import { Routes } from "../../routes";
 import {
-  useJsApiLoader,
-  GoogleMap,
-  Marker,
-  Autocomplete,
-  DirectionsRenderer,
-} from '@react-google-maps/api'
-
+  Autocomplete
+} from '@react-google-maps/api';
+import { Button, Card, Col, Form, Row } from '@themesberg/react-bootstrap';
+import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Routes } from "../../routes";
+import { store } from "../../store/store";
 import Map from '../components/Map';
 
-import axios from 'axios';
-import {store} from "../../store/store"
+
+
+
+
 
 export default function () {
   const [resp,setR]=useState([])
@@ -94,7 +90,7 @@ export default function () {
       setDuration("Time Duration is "+results.routes[0].legs[0].duration.text)
       setD({
         ...data,
-        orgin:originRef.current.value,
+        origin:originRef.current.value,
         destination:destiantionRef.current.value,
         days:counter
       })

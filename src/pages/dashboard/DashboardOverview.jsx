@@ -18,13 +18,14 @@ import { Routes } from "../../routes";
 
 export default () => {
 
-  const [resp,setR]=useState([])
+  
   const history=useHistory()
-
+  const [resp,setR]=useState([])
   useEffect(()=>{
     var config = {
       method: 'get',
       url: 'https://vast-journey-06976.herokuapp.com/Trip',
+      // url: 'https://vast-journey-06976.herokuapp.com/Trip',
       headers: { }
     };
       

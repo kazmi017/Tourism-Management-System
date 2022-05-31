@@ -1,16 +1,15 @@
-import React,{useState,useRef,useEffect} from 'react';
-import {Link,useHistory} from 'react-router-dom'
-import { Col,Carousel, Row, Form, Card, Button, Container, InputGroup, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
-
 import {
-    Autocomplete
-  } from '@react-google-maps/api'
-
-import { Routes } from "../../routes";
-import PlaceCard from '../components/PlaceCard';
-
+  Autocomplete
+} from '@react-google-maps/api';
+import { Button, Carousel, Col, Form, Row } from '@themesberg/react-bootstrap';
 import axios from 'axios';
-import {store} from "../../store/store"
+import React, { useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Routes } from "../../routes";
+import { store } from "../../store/store";
+
+
+
 
 export default function () {
   const history=useHistory()
@@ -85,7 +84,7 @@ export default function () {
 
     return (
         <>
-        <h3>Most Visited Hotels in {o}:</h3>
+        <h3>Click to Select:</h3>
         <Row className="d-flex flex-row justify-content-center text-white">
             <Col md={6} >
                 <Carousel  >

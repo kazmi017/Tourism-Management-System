@@ -1,13 +1,11 @@
-import React,{useState,useEffect} from 'react';
-import {Link,useHistory} from 'react-router-dom'
-
-import { Col, Row, Form, Card, Button, ListGroup, Table, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
-
-
-import { Routes } from "../../routes";
-import Admincard from '../components/Admincard';
-
+import { Button, Card, Col, Form, Row, Table } from '@themesberg/react-bootstrap';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+
+
+
 
 export default function () {
 

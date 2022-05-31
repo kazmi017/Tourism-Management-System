@@ -1,6 +1,6 @@
 import React from 'react';
-import { DatePicker, RangePicker, theme } from 'react-trip-date';
-import {ThemeProvider} from 'styled-components';
+import { RangePicker } from 'react-trip-date';
+import { ThemeProvider } from 'styled-components';
 import themeStyle from "../../assets/syntax-themes/ghcolors.json";
 
 function CalendarCard(props) {

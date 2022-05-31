@@ -1,23 +1,28 @@
-import React,{useState,useEffect} from 'react';
-import {Link,useHistory} from 'react-router-dom'
-
-import { Col, Row, Form, Card, Button, ListGroup, Table, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
-
-
-import { Routes } from "../../routes";
-import Admincard from '../components/Admincard';
-
+import { Button, Col, Row, Table } from '@themesberg/react-bootstrap';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+
+
+
+
 
 export default function () {
+    const [e,setE]=useState({
+      email:""
+    })
     const [data,setData]=useState({})
     const [status,setStatus]=useState("");
     const [resp,setR]=useState([])
+    const [respc,setRC]=useState([])
+    const [respt,setRT]=useState([])
+    const [resph,setRH]=useState([])
+    const [id,setId]=useState({})
 
     useEffect(()=>{
         var config = {
             method: 'get',
             url: 'https://vast-journey-06976.herokuapp.com/User',
+            // url: 'https://vast-journey-06976.herokuapp.com/User',
             headers: { }
           };
           
@@ -32,26 +37,94 @@ export default function () {
         });
       },[status]);
 
+      
+
       const Click=(email)=>{
         console.log(email);
-        // var config = {
-        //   method: 'post',
-        //   url: 'https://vast-journey-06976.herokuapp.com/Hotel',
-        //   headers: { 
-        //     'Content-Type': 'application/json'
-        //   },
-        //   data : data
-        // };
+        setE({email:email})
+        var config = {
+          method: 'post',
+          url: 'https://vast-journey-06976.herokuapp.com/UserDsT',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : e
+        };
+        
+      
+      axios(config)
+      .then(function (response) {
+        console.log(response.data);
+        setRT(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+      var config = {
+          method: 'post',
+          url: 'https://vast-journey-06976.herokuapp.com/UserDsC',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : e
+      };
+      
+    
+    axios(config)
+    .then(function (response) {
+      console.log(response.data);
+      setRC(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    var config = {
+      method: 'post',
+      url: 'https://vast-journey-06976.herokuapp.com/UserDsh',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : e
+  };
+    
   
-        // axios(config)
-        //   .then(function (response) {
-        //     console.log(JSON.stringify(response.data));
-        //     setStatus(JSON.stringify(response.data))
-        //   })
-        //   .catch(function (error) {
-        //     console.log(error);
-        //   });
+  axios(config)
+  .then(function (response) {
+    console.log(response.data);
+    setRH(response.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
   
+      }
+
+      const del=(id,link)=>{
+        console.log(id)
+        setId({_id:id})
+        var config = {
+          method: 'delete',
+          url: 'https://vast-journey-06976.herokuapp.com/'+link,
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : { 
+            _id: id
+             
+         }
+        };
+
+        axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          Click(e)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
       }
 
     return (
@@ -80,25 +153,29 @@ export default function () {
             </Col>
             <Col style={{height:"15rem",overflowY: 'auto'}} md={6}> 
                 <h3>Hotels Booked</h3>
+                
                     <Table>
                       <thead>
                         <tr>
                           <th>Name</th>
                           <th>Rent</th>
                           <th>Location</th>
-                          <th>Stars</th>
                           <th>Action</th>
                         </tr>
                       </thead>
+                      {resph.map(item => (
                       <tbody>
                         <tr>
-                          <td>item.name</td>
-                          <td>item.rent</td>
-                          <td>item.place</td>
-                          <td>item.star</td>
-                          <td><Button>Remove</Button></td>
+                        <td>{item.location}</td>
+                        <td>{item.rent}</td>
+                        <td>{item.location}</td>
+                          
+                        <td><Button
+                        onClick={()=>del(item._id,'HotelBook')}
+                        >Remove</Button></td>
                         </tr>
                       </tbody>
+                      ))}
                     </Table>
             </Col>
         </Row>
@@ -110,20 +187,29 @@ export default function () {
                         <tr>
                           <th>Name</th>
                           <th>Rent</th>
-                          <th>Location</th>
-                          <th>Stars</th>
+                          <th>Engine</th>
+                          <th>Days</th>
+                          <th>Origin</th>
+                          <th>Destination</th>
                           <th>Action</th>
                         </tr>
                       </thead>
+                      {respc.map(item => (
                       <tbody>
                         <tr>
-                          <td>item.name</td>
-                          <td>item.rent</td>
-                          <td>item.place</td>
-                          <td>item.star</td>
-                          <td><Button>Remove</Button></td>
+                        <td>{item.name}</td>
+                        <td>{item.rent}</td>
+                        <td>{item.engine}</td>
+                        <td>{item.days}</td>
+                        <td>{item.origin}</td>
+                        <td>{item.destination}</td>
+                          
+                        <td><Button
+                        onClick={()=>del(item._id,'CarBook')}
+                        >Remove</Button></td>
                         </tr>
                       </tbody>
+                      ))}
                     </Table>
             </Col>
             <Col style={{height:"15rem",overflowY: 'auto'}} md={6}> 
@@ -132,21 +218,29 @@ export default function () {
                       <thead>
                         <tr>
                           <th>Name</th>
-                          <th>Rent</th>
+                          <th>Date</th>
                           <th>Location</th>
-                          <th>Stars</th>
+                          <th>Seats</th>
                           <th>Action</th>
                         </tr>
                       </thead>
+                      {respt.map(item => (
                       <tbody>
                         <tr>
-                          <td>item.name</td>
-                          <td>item.rent</td>
-                          <td>item.place</td>
-                          <td>item.star</td>
-                          <td><Button>Remove</Button></td>
+                        <td>{item.name}</td>
+                        <td>{item.date}</td>
+                        <td>{item.place}</td>
+                        <td>{item.seats}</td>
+                          
+                          <td><Button 
+                        onClick={()=>del(item._id,'TripBook')}
+                        >
+                          Remove
+                        </Button>
+                        </td>
                         </tr>
                       </tbody>
+                      ))}
                     </Table>
             </Col>
         </Row>

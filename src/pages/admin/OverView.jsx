@@ -1,11 +1,11 @@
-import React,{useState,useRef} from 'react';
-import {Link,useHistory} from 'react-router-dom'
-
-import { Col, Row, Form, Card, Button, Container, InputGroup, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
-
-
+import { Col, Row } from '@themesberg/react-bootstrap';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Routes } from "../../routes";
 import Admincard from '../components/Admincard';
+
+
+
 
 export default function () {
   
@@ -30,24 +30,24 @@ export default function () {
             </Col>
             <Col md={3} className="mt-2">
             <Admincard 
-              tit="Trip"
-              sub="Create a trip" 
-              desc="Here you can add trip to database." 
-              link={Routes.Trip.path}/>
+              tit="Cars"
+              sub="Add a Car" 
+              desc="Here you can add Cars to database." 
+              link={Routes.Cars.path}/>
             </Col>
             <Col md={3} className="mt-2">
             <Admincard 
-              tit="Trip"
-              sub="Create a trip" 
-              desc="Here you can add trip to database." 
-              link={Routes.Trip.path}/>
+              tit="Hotels"
+              sub="Add a Hotel" 
+              desc="Here you can add Hotels to database." 
+              link={Routes.Hotels.path}/>
             </Col>    
             <Col md={3} className="mt-2">
               <Admincard 
-              tit="Trip"
-              sub="Create a trip" 
-              desc="Here you can add trip to database." 
-              link={Routes.Trip.path}/>
+              tit="Users Detail"
+              sub="Check User Details" 
+              desc="Here you can Check User Details from database." 
+              link={Routes.Users.path}/>
             </Col>  
           </Row>
       </>  

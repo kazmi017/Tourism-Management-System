@@ -1,9 +1,8 @@
-import React from "react";
+import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCashRegister, faChartLine,faLocationArrow, faCloudUploadAlt, faPlus, faRocket, faTasks, faUserShield } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row,Card, Button, Dropdown, ButtonGroup } from '@themesberg/react-bootstrap';
+import { Card } from '@themesberg/react-bootstrap';
+import React from "react";
 
-import {Link} from 'react-router-dom'
 
 function PlaceCard(props) {
     const {src,alt,place,loc} = props;

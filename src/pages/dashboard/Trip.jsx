@@ -1,14 +1,14 @@
-import React,{useState,useEffect} from 'react';
-import {Link, useLocation} from 'react-router-dom'
-import { Col, Row, Form, Card, Button, Container, InputGroup, Navbar, Nav,NavDropdown } from '@themesberg/react-bootstrap';
-
+import { Button, Card, Col, Row } from '@themesberg/react-bootstrap';
 import axios from 'axios';
-
-import { Routes } from "../../routes";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { store } from "../../store/store";
 import PlaceCard from '../components/PlaceCard';
-import {store} from "../../store/store"
+
+
 
 export default function (props) {
+  // logic about total seats
   const [counter, setCounter] = useState(0);
   const [data,setD]=useState({
     email:store.getState()["user"]["email"],
@@ -30,6 +30,7 @@ export default function (props) {
   d=location.state.data;
   
   const increase = () => {
+    if(counter<location.state.data.seats)
     setCounter(count => count + 1);
     
   };
@@ -51,11 +52,36 @@ export default function (props) {
   
   })
   }
+
+  const upd=()=>{
+    var config = {
+      method: 'put',
+      url: 'https://vast-journey-06976.herokuapp.com/TripBook',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : {
+        _id: d._id,
+        seats: d.seats-counter
+      }
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(data)
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   const clicked=(e)=>{
     e.stopPropagation();
     var config = {
       method: 'post',
       url: 'https://vast-journey-06976.herokuapp.com/TripBook',
+      // url: 'https://vast-journey-06976.herokuapp.com/TripBook',
       headers: { 
         'Content-Type': 'application/json'
       },
@@ -65,6 +91,7 @@ export default function (props) {
     axios(config)
 .then(function (response) {
   console.log(JSON.stringify(response.data));
+  upd()
 })
 .catch(function (error) {
   console.log(error);
@@ -86,7 +113,7 @@ export default function (props) {
           <Col md={4} className="ml-5">
           <Card>
               <Card.Body>
-                <Card.Title>Kumrat</Card.Title>
+                <Card.Title>{d.name}</Card.Title>
                 <Card.Text className="border-bottom">
                   Availabale Seats:{d.seats}
                 </Card.Text>

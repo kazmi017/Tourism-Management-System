@@ -1,59 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
-import { Routes } from "../routes";
-
-// pages
-import Presentation from "./Presentation";
-import Upgrade from "./Upgrade";
-import DashboardOverview from "./dashboard/DashboardOverview.jsx";
-import Transactions from "./Transactions";
-import Settings from "./Settings";
-import BootstrapTables from "./tables/BootstrapTables";
-import Signin from "./examples/Signin";
-import Signup from "./examples/Signup";
-import ForgotPassword from "./examples/ForgotPassword";
-import ResetPassword from "./examples/ResetPassword";
-import Lock from "./examples/Lock";
-import NotFoundPage from "./examples/NotFound";
-import ServerError from "./examples/ServerError";
-
-import Booking from './dashboard/Booking.jsx';
-
+import React, { useEffect, useState } from 'react';
+import { Redirect, Route, Switch } from "react-router-dom";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import Preloader from "../components/Preloader";
 // components
 import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import Preloader from "../components/Preloader";
-
-import Accordion from "./components/Accordion";
-import Alerts from "./components/Alerts";
-import Badges from "./components/Badges";
-import Breadcrumbs from "./components/Breadcrumbs";
-import Buttons from "./components/Buttons";
-import Forms from "./components/Forms";
-import Modals from "./components/Modals";
-import Navs from "./components/Navs";
-import Navbars from "./components/Navbars";
-import Pagination from "./components/Pagination";
-import Popovers from "./components/Popovers";
-import Progress from "./components/Progress";
-import Tables from "./components/Tables";
-import Tabs from "./components/Tabs";
-import Tooltips from "./components/Tooltips";
-import Toasts from "./components/Toasts";
-import Solo from './dashboard/Solo';
-import Solob from './dashboard/Solob';
-import Historry from './dashboard/Historry';
-import Car from './dashboard/Car';
-import Trip from './dashboard/Trip';
-import Hotel from './dashboard/Hotel';
-import OverView from './admin/OverView';
 import SidebarAdmin from '../components/SidebarAdmin';
-import Trips from './admin/Trips';
-import Notifs from './admin/Notifs';
+import { Routes } from "../routes";
 import Cars from './admin/Cars';
 import Hotels from './admin/Hotels';
+import Notifs from './admin/Notifs';
+import OverView from './admin/OverView';
+import Trips from './admin/Trips';
 import Users from './admin/Users';
+import Booking from './dashboard/Booking.jsx';
+import Car from './dashboard/Car';
+import DashboardOverview from "./dashboard/DashboardOverview.jsx";
+import Historry from './dashboard/Historry';
+import Hotel from './dashboard/Hotel';
+import Solo from './dashboard/Solo';
+import Solob from './dashboard/Solob';
+import Trip from './dashboard/Trip';
+import ForgotPassword from "./examples/ForgotPassword";
+import Lock from "./examples/Lock";
+import NotFoundPage from "./examples/NotFound";
+import ResetPassword from "./examples/ResetPassword";
+import ServerError from "./examples/ServerError";
+import Signin from "./examples/Signin";
+import Signup from "./examples/Signup";
+// pages
+import Presentation from "./Presentation";
+
+
+
+
+
+
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -165,7 +147,6 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Car.path} component={Car} />
     <RouteWithSidebar exact path={Routes.Trip.path} component={Trip} />
     <RouteWithSidebar exact path={Routes.Hotel.path} component={Hotel} />
-    <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
     <RouteWithSidebar exact path={Routes.History.path} component={Historry} />
 
     
