@@ -98,7 +98,7 @@ axios(config)
                       {resph.map(item => (
                       <tbody>
                         <tr>
-                        <td>{item.location}</td>
+                        <td>{item.name}</td>
                         <td>{item.rent}</td>
                         <td>{item.location}</td>
                         </tr>

@@ -44,7 +44,7 @@ export default function () {
         
         var config = {
           method: 'post',
-          url: 'http://localhost:5002/UserDsT',
+          url: 'https://vast-journey-06976.herokuapp.com/UserDsT',
           headers: { 
             'Content-Type': 'application/json'
           },
