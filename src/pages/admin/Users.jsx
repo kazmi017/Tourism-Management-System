@@ -41,10 +41,10 @@ export default function () {
 
       const Click=(email)=>{
         console.log(email);
-        setE({email:email})
+        
         var config = {
           method: 'post',
-          url: 'https://vast-journey-06976.herokuapp.com/UserDsT',
+          url: 'http://localhost:5002/UserDsT',
           headers: { 
             'Content-Type': 'application/json'
           },
@@ -145,7 +145,7 @@ export default function () {
                         <tr>
                           <td>{item.fName}</td>
                           <td>{item.email}</td>
-                          <td><Button onClick={()=>Click(item.email)}>Select</Button></td>
+                          <td><Button onFocus={()=>{setE({email:item.email})}} onClick={()=>Click(item.email)}>Select</Button></td>
                         </tr>
                       </tbody>
                       ))}

@@ -101,8 +101,6 @@ axios(config)
                         <td>{item.location}</td>
                         <td>{item.rent}</td>
                         <td>{item.location}</td>
-                          
-                        <td><Button>Remove</Button></td>
                         </tr>
                       </tbody>
                       ))}
@@ -133,8 +131,6 @@ axios(config)
                         <td>{item.days}</td>
                         <td>{item.origin}</td>
                         <td>{item.destination}</td>
-                          
-                        <td><Button>Remove</Button></td>
                         </tr>
                       </tbody>
                       ))}
@@ -159,8 +155,6 @@ axios(config)
                         <td>{item.date}</td>
                         <td>{item.place}</td>
                         <td>{item.seats}</td>
-                          
-                          <td><Button>Remove</Button></td>
                         </tr>
                       </tbody>
                       ))}

@@ -1,0 +1,12 @@
+ no payment module is added. (done)
+ complete history module. (done)
+ android app is not shown. code uploaded (done)
+Add datepicker for entering dates. (done)
+on solo trips make GUI better and remove submit button, instead add show expense button. (done)
+in hotel booking GUI add book button instead of submit and also add payment details 
+after booking is successfull. (Done)
+Report has some formatting issues. start new chapter from new page also 
+add references and future enhancements. {Not my concern}
+[praise]
+Overall the project was OK. It was deployed. And students 
+have understanding of how the code works. Questions were asked related to database and underline algorithms.

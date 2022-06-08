@@ -10,6 +10,8 @@ import { useHistory } from 'react-router-dom';
 
 export default function () {
 
+  const [id,setId]=useState({})
+
     const [status,setStatus]=useState("");
     const [data,setData]=useState({
     })
@@ -66,6 +68,32 @@ export default function () {
 
     }
 
+    const del=(id)=>{
+      console.log(id)
+      setId({_id:id})
+      var config = {
+        method: 'delete',
+        url: 'https://vast-journey-06976.herokuapp.com/Trip',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : { 
+          _id: id
+           
+       }
+      };
+
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        setStatus(JSON.stringify(response.data))
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    }
+
     return (
         <>  
         <Card  className='mt-5'>
@@ -101,6 +129,11 @@ export default function () {
               <Form.Control name="description"
               onChange={e => onChange(e)} 
               id="desc" placeholder="Trip Description" />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Control name="price"
+              onChange={e => onChange(e)} 
+              id="price" placeholder="Trip Price per Seat" />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Control name="src"
@@ -146,7 +179,7 @@ export default function () {
                   <td>{item.place}</td>
                   <td>{item.date}</td>
                   <td>{item.description}</td>
-                  <td><Button>Remove</Button></td>
+                  <td><Button onClick={()=>del(item._id)}>Remove</Button></td>
                 </tr>
               </tbody>
               ))}

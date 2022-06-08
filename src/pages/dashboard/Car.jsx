@@ -9,12 +9,18 @@ import { Routes } from "../../routes";
 import { store } from "../../store/store";
 import Map from '../components/Map';
 
+import CalendarCard from "../components/CalendarCard"
+
 
 
 
 
 
 export default function () {
+
+  const[cond,setCond]=useState("")
+  const [styl,setStyle]=useState('border border-danger')
+  const [d,setDa]=useState({})
   const [resp,setR]=useState([])
   const [data,setD]=useState({
     email:store.getState()["user"]["email"]
@@ -65,13 +71,6 @@ export default function () {
     /** @type React.MutableRefObject<HTMLInputElement> */
     const destiantionRef = useRef()
 
-    function clearRoute() {
-      setDirectionsResponse(null)
-      setDistance('')
-      setDuration('')
-      originRef.current.value = ''
-      destiantionRef.current.value = ''
-    }
     async function calculateRoute() {
       if (originRef.current.value === '' || destiantionRef.current.value === '') {
         return
@@ -96,20 +95,23 @@ export default function () {
       })
     }
 
-    const clicked=(item)=>{
+    const clicked=(item,e)=>{
+      calculateRoute()
       setD({
         ...data,
         name:item.name,
         engine:item.engine,
         rent:item.rent
       })
+      setCond(item.name)
       console.log(data)
     }
 
     const handlesubmit=(event)=>{
         event.preventDefault();
-        // history.push(Routes.Solob.path)
-        console.log(data)
+        let rent=data.outa.slice(8, 10)-data.ina.slice(8, 10)
+        rent*=data.rent
+        console.log(rent)
         var config = {
           method: 'post',
           url: 'https://vast-journey-06976.herokuapp.com/CarBook',
@@ -122,7 +124,12 @@ export default function () {
         .then(function (response) {
           console.log(JSON.stringify(response.data));
           alert(response.data.message)
-          history.push(Routes.Car.path)
+          history.push({
+            pathname: Routes.Payment.path,
+            state: { 
+              data: rent, 
+            },
+          })
         })
         .catch(function (error) {
           console.log(error);
@@ -149,21 +156,9 @@ export default function () {
               <Form.Control id="name" ref={destiantionRef} placeholder="Destinition" />
             </Form.Group>
             </Autocomplete>
-            <h3>Enter Your Needs Detail</h3>
-            <Col onFocus={calculateRoute} className="mt-2 mb-2">
-                <h4>Days:</h4>
-            <Row md={4} className="d-flex flex-row justify-content-center text-center" >
-            <Button className="control__btn" onClick={increase}>+</Button>
-            <span>{counter}</span>
-            <Button className="control__btn" onClick={decrease}>-</Button>
-            </Row>
-            <Row md={4} className="d-flex flex-row justify-content-center text-center">
-                <Button onClick={reset}>Reset</Button>
-            </Row>
-            </Col>
             <Row>
             {resp.map(item => (
-            <Card onClick={()=>clicked(item)} style={{ width: '12rem' ,height:'10rem'}}>
+            <Card className={cond==item.name?styl:''} onClick={(e)=>clicked(item,e)} style={{ width: '12rem' ,height:'10rem'}}>
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{item.engine}cc</Card.Subtitle> 
@@ -173,8 +168,16 @@ export default function () {
             </Card>  
             ))}          
             </Row>
+            <h3>Enter Your Needs Detail</h3>
+            <Col onFocus={calculateRoute} className="mt-2 mb-2">
+                <h4>Days:</h4>
+                <Row  md={3}>
+              <CalendarCard set={setDa}/>
+              </Row>
+            </Col>
             
-            <Button type="submit">Submit</Button>
+            
+            <Button onFocus={()=>setD({...data,ina:d.ina,outa:d.outa})} type="submit">Proceed</Button>
           </fieldset>
         </Form>
         </Col>

@@ -8,7 +8,8 @@ export const Routes = {
     Car:{path:"/dashboard/car"},
     Trip:{path:"/dashboard/trip"},
     Hotel:{path:"/dashboard/hotel"},
-    History: { path: "/history" },
+    History: { path: "/dashboard/history" },
+    Payment: {path:"/dashboard/payment"},
 // Admin
     Admin:{path:"/admin/overview"},
     Trips:{path:"/admin/trip"},

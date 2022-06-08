@@ -108,7 +108,7 @@ export default function () {
                 label="Can't check this"
               />
             </Form.Group> */}
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Next</Button>
           </fieldset>
         </Form>
         </Col>

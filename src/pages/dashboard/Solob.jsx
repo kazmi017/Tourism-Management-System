@@ -5,7 +5,6 @@ import React from 'react';
 
 export default function () {
     return (
-      // #OKHA KAAM MAPPING ITEMS
         <> 
         <h1>Fuel expense is 5124 rupees</h1>
         <h3>Enter Your Meal Details</h3>
@@ -34,7 +33,7 @@ export default function () {
             <Form.Group className="mb-3">
               <Form.Control id="disabledTextInput" placeholder="All" />
             </Form.Group>
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Show Expense</Button>
           </fieldset>
         </Form>
         <h2>Total Amount of Meal is 5124 rupees</h2>

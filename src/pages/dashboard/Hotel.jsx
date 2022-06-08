@@ -1,22 +1,27 @@
 import {
   Autocomplete
 } from '@react-google-maps/api';
-import { Button, Carousel, Col, Form, Row } from '@themesberg/react-bootstrap';
+import { Button, Card, Carousel, Col, Form, Row } from '@themesberg/react-bootstrap';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Routes } from "../../routes";
 import { store } from "../../store/store";
 
+import CalendarCard from "../components/CalendarCard"
+
 
 
 
 export default function () {
+  const[cond,setCond]=useState("")
+  const [styl,setStyle]=useState('border border-danger')
+  const [d,setDa]=useState({})
   const history=useHistory()
   const [resp,setR]=useState([])
   const[o,seto]=useState("Islamabad")
   const [data,setD]=useState({
-    email:store.getState()["user"]["email"]
+    email:store.getState()["user"]["email"],
   })
   const onChange = e => setD({ ...data, [e.target.name]: e.target.value });
 
@@ -47,8 +52,11 @@ export default function () {
 
     const handlesubmit=(event)=>{
         event.preventDefault();
+        let rent=data.outa.slice(8, 10)-data.ina.slice(8, 10)
+        rent*=data.rent
+        rent*=data.rooms
         
-        console.log(data)
+        console.log(rent)
         var config = {
           method: 'post',
           url: 'https://vast-journey-06976.herokuapp.com/HotelBook',
@@ -62,7 +70,12 @@ export default function () {
         .then(function (response) {
           console.log(JSON.stringify(response.data));
           alert(response.data.message)
-          history.push(Routes.Hotel.path)
+          history.push({
+            pathname: Routes.Payment.path,
+            state: { 
+              data: rent, 
+            },
+          })
         })
         .catch(function (error) {
           console.log(error);
@@ -79,31 +92,31 @@ export default function () {
         place:item.place
       
       })
+      setCond(item.name)
       console.log(data)
     }
 
     return (
         <>
         <h3>Click to Select:</h3>
-        <Row className="d-flex flex-row justify-content-center text-white">
-            <Col md={6} >
-                <Carousel  >
-                {resp.map(item => (
-                  <Carousel.Item onClick={()=>clicked(item)}>
-                    <img
+        <Row className="d-flex flex-row justify-content-center text-order">
+            <Row md={4}>
+            {resp.map(item => (
+            <Card className={cond==item.name?styl:''} onClick={()=>clicked(item)}>
+              <Card.Body>
+              <img
                       className="d-block w-100"
                       src={process.env.PUBLIC_URL +'./kumrat.jpg'}
                       alt="First slide"
                     />
-                    <Carousel.Caption>
-                      <h3 className="text-black">{item.name}</h3>
-                      <h5>{item.rent}</h5>
-                      <p>{item.place}/{item.star}Star</p>
-                    </Carousel.Caption>
-                  </Carousel.Item>
-                ))}
-                </Carousel>
-            </Col>
+                <Card.Title>{item.name}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{item.place}/{item.star}Star</Card.Subtitle> 
+                <Card.Text>Rent is {item.rent} per day.</Card.Text>
+                <Card.Link href="#"></Card.Link>
+              </Card.Body>
+            </Card>  
+            ))}          
+            </Row>
         </Row>
         <Row>
         <Form onSubmit={handlesubmit} className="mt-5" >
@@ -113,17 +126,21 @@ export default function () {
               <Form.Control id="name" ref={originRef} placeholder="Location" />
             </Form.Group>
             </Autocomplete>
-            <Form.Group className="mb-3">
+            <Row onFocus={set} md={3}>
+              <CalendarCard set={setDa}/>
+              </Row>
+
+            {/* <Form.Group className="mb-3">
               <Form.Control name="ina"
               onChange={e => onChange(e)} 
               id="average" onFocus={set} placeholder="Check-In" />
-            </Form.Group>
-            <Form.Group className="mb-3">
+            </Form.Group> */}
+            {/* <Form.Group className="mb-3">
               <Form.Control
               name="out"
               onChange={e => onChange(e)} 
               id="out" placeholder="Check-Out" />
-            </Form.Group>
+            </Form.Group> */}
             <Form.Select className="mb-3">
               <Form.Control
               name="type"
@@ -141,7 +158,7 @@ export default function () {
               onChange={e => onChange(e)}
               id="price" placeholder="Rooms" />
             </Form.Group>
-            <Button type="submit">Search</Button>
+            <Button onFocus={()=>setD({...data,ina:d.ina,outa:d.outa})} type="submit">Book</Button>
           </fieldset>
         </Form>
         </Row>

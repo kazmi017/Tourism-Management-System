@@ -5,10 +5,13 @@ import { useLocation } from 'react-router-dom';
 import { store } from "../../store/store";
 import PlaceCard from '../components/PlaceCard';
 
+import { useHistory } from 'react-router-dom';
+import { Routes } from '../../routes';
+
 
 
 export default function (props) {
-  // logic about total seats
+  const history=useHistory()
   const [counter, setCounter] = useState(0);
   const [data,setD]=useState({
     email:store.getState()["user"]["email"],
@@ -91,7 +94,14 @@ export default function (props) {
     axios(config)
 .then(function (response) {
   console.log(JSON.stringify(response.data));
+  alert(response.data.message)
   upd()
+  history.push({
+    pathname: Routes.Payment.path,
+    state: { 
+      data: "rent", 
+    },
+  })
 })
 .catch(function (error) {
   console.log(error);

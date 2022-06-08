@@ -18,6 +18,7 @@ import Car from './dashboard/Car';
 import DashboardOverview from "./dashboard/DashboardOverview.jsx";
 import Historry from './dashboard/Historry';
 import Hotel from './dashboard/Hotel';
+import Payment from './dashboard/Payment';
 import Solo from './dashboard/Solo';
 import Solob from './dashboard/Solob';
 import Trip from './dashboard/Trip';
@@ -122,6 +123,7 @@ const AdminRouteWithSidebar = ({ component: Component, ...rest }) => {
 
 export default () => (
   <Switch>
+    {/* Landings */}
     <RouteWithLoader exact path={Routes.Presentation.path} component={Presentation} />
     <RouteWithLoader exact path={Routes.Signin.path} component={Signin} />
     <RouteWithLoader exact path={Routes.Signup.path} component={Signup} />
@@ -130,16 +132,14 @@ export default () => (
     <RouteWithLoader exact path={Routes.Lock.path} component={Lock} />
     <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
     <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />
-    
+    {/* Admins */}
     <AdminRouteWithSidebar exact path={Routes.Admin.path} component={OverView} />
     <AdminRouteWithSidebar exact path={Routes.Trips.path} component={Trips} />
     <AdminRouteWithSidebar exact path={Routes.Hotels.path} component={Hotels} />
     <AdminRouteWithSidebar exact path={Routes.Cars.path} component={Cars} />
     <AdminRouteWithSidebar exact path={Routes.Notifications.path} component={Notifs} />
     <AdminRouteWithSidebar exact path={Routes.Users.path} component={Users} />
-
-
-    {/* pages */}
+    {/* Dashboards */}
     <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
     <RouteWithSidebar exact path={Routes.Booking.path} component={Booking} />
     <RouteWithSidebar exact path={Routes.Solo.path} component={Solo} />
@@ -148,9 +148,8 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Trip.path} component={Trip} />
     <RouteWithSidebar exact path={Routes.Hotel.path} component={Hotel} />
     <RouteWithSidebar exact path={Routes.History.path} component={Historry} />
-
-    
-    
+    <RouteWithSidebar exact path={Routes.Payment.path} component={Payment} />
+    {/* Not Founf 404 */}
     <Redirect to={Routes.NotFound.path} />
   </Switch>
 );

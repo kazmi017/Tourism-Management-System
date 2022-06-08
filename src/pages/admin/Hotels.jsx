@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 
 export default function () {
-
+  const [id,setId]=useState({})
     const [data,setData]=useState({})
     const [status,setStatus]=useState("");
     const [resp,setR]=useState([])
@@ -55,6 +55,31 @@ export default function () {
         .catch(function (error) {
           console.log(error);
         });
+
+    }
+    const del=(id)=>{
+      console.log(id)
+      setId({_id:id})
+      var config = {
+        method: 'delete',
+        url: 'https://vast-journey-06976.herokuapp.com/Hotel',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : { 
+          _id: id
+           
+       }
+      };
+
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        setStatus(JSON.stringify(response.data))
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
     }
 
@@ -117,7 +142,7 @@ export default function () {
                           <td>{item.rent}</td>
                           <td>{item.place}</td>
                           <td>{item.star}</td>
-                          <td><Button>Remove</Button></td>
+                          <td><Button onClick={()=>del(item._id)}>Remove</Button></td>
                         </tr>
                       </tbody>
                       ))}
