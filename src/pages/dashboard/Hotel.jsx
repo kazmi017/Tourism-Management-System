@@ -123,7 +123,7 @@ export default function () {
           <fieldset>
           <Autocomplete>
           <Form.Group className="mb-3">
-              <Form.Control id="name" ref={originRef} placeholder="Location" />
+              <Form.Control required id="name" ref={originRef} placeholder="Location" />
             </Form.Group>
             </Autocomplete>
             <Row onFocus={set} md={3}>
@@ -131,12 +131,12 @@ export default function () {
               </Row>
 
             {/* <Form.Group className="mb-3">
-              <Form.Control name="ina"
+              <Form.Control required name="ina"
               onChange={e => onChange(e)} 
               id="average" onFocus={set} placeholder="Check-In" />
             </Form.Group> */}
             {/* <Form.Group className="mb-3">
-              <Form.Control
+              <Form.Control required
               name="out"
               onChange={e => onChange(e)} 
               id="out" placeholder="Check-Out" />
@@ -153,7 +153,7 @@ export default function () {
               <option>All</option>
               </Form.Select>
             <Form.Group className="mb-3">
-              <Form.Control
+              <Form.Control required
               name="rooms"
               onChange={e => onChange(e)}
               id="price" placeholder="Rooms" />

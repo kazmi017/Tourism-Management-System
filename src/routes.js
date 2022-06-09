@@ -4,7 +4,6 @@ export const Routes = {
     DashboardOverview: { path: "/dashboard/overview" },
     Booking: {path: "/dashboard/booking"},
     Solo: { path: "/dashboard/solo" },
-    Solob: { path: "/dashboard/solo/more" },
     Car:{path:"/dashboard/car"},
     Trip:{path:"/dashboard/trip"},
     Hotel:{path:"/dashboard/hotel"},

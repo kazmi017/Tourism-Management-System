@@ -5,6 +5,8 @@ import { Button, Card, Col, Form, Row } from '@themesberg/react-bootstrap';
 import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Map from '../components/Map';
+import { store } from "../../store/store";
+import { Routes } from '../../routes';
 
 
 
@@ -13,6 +15,12 @@ import Map from '../components/Map';
 
 
 export default function () {
+  const [data,setd]=useState({
+    email:store.getState()["user"]["email"]
+  })
+  const onChange = e => setd({ ...data, [e.target.name]: e.target.value });
+  const [dis,setDis]=useState()
+  const [expen,setEx]=useState()
   
     const history=useHistory()
     const[distanc,setD]=useState(null)
@@ -48,13 +56,14 @@ export default function () {
       })
       setDirectionsResponse(results)
       setDistance("Distance is "+results.routes[0].legs[0].distance.text)
+      setDis(results.routes[0].legs[0].distance.text.split(" ")[0])
       setDuration("Time Duration is "+results.routes[0].legs[0].duration.text)
     }
 
     const handlesubmit=(event)=>{
         event.preventDefault();
-        // history.push(Routes.Solob.path)
-        console.log(originRef.current.value+destiantionRef.current.value)
+        setEx((dis/data.average)*data.price)
+        console.log((dis/data.average)*data.price)
     }
     return (
         <>  
@@ -69,19 +78,19 @@ export default function () {
           <fieldset>
           <Autocomplete>
           <Form.Group className="mb-3">
-              <Form.Control id="name" ref={originRef} placeholder="Origin" />
+              <Form.Control required id="name" ref={originRef} placeholder="Origin" />
             </Form.Group>
             </Autocomplete>
             <Autocomplete>
           <Form.Group className="mb-3">
-              <Form.Control id="name" ref={destiantionRef} placeholder="Destinition" />
+              <Form.Control required id="name" ref={destiantionRef} placeholder="Destinition" />
             </Form.Group>
             </Autocomplete>
             <Form.Group className="mb-3">
-              <Form.Control id="name" onFocus={calculateRoute} placeholder="Car Name" />
+              <Form.Control required id="name" onFocus={calculateRoute} placeholder="Car Name" />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Select id="power" placeholder="Car Engine i.e, 1000cc">
+              <Form.Select required id="power" placeholder="Car Engine i.e, 1000cc">
               <option>660cc</option>
               <option>1000cc</option>
               <option>1300cc</option>
@@ -90,16 +99,15 @@ export default function () {
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Control id="average" placeholder="Car Average in KM" />
+              <Form.Control required name="average"
+              onChange={e => onChange(e)} id="average" placeholder="Car Average in KM" />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Control id="type" placeholder="Car Type" />
+              <Form.Control required id="type" placeholder="Car Type" />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Control id="price" placeholder="Fuel" />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control id="disabledTextInput" placeholder="Car Name" />
+              <Form.Control required name="price"
+              onChange={e => onChange(e)} id="price" placeholder="Fuel" />
             </Form.Group>
             {/* <Form.Group className="mb-3">
               <Form.Check
@@ -108,9 +116,10 @@ export default function () {
                 label="Can't check this"
               />
             </Form.Group> */}
-            <Button type="submit">Next</Button>
+            <Button type="submit">Calculate Expenses</Button>
           </fieldset>
         </Form>
+        <h3>Fuel expense will be about {expen} Ruppees!</h3>
         </Col>
         <Col md={6} className="mt-6">
         <Map center={center} directionsResponse={directionsResponse}/> 

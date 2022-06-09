@@ -148,12 +148,12 @@ export default function () {
           <fieldset>
           <Autocomplete>
           <Form.Group className="mb-3">
-              <Form.Control id="name" ref={originRef} placeholder="Origin" />
+              <Form.Control required id="name" ref={originRef} placeholder="Origin" />
             </Form.Group>
             </Autocomplete>
             <Autocomplete>
           <Form.Group className="mb-3">
-              <Form.Control id="name" ref={destiantionRef} placeholder="Destinition" />
+              <Form.Control required id="name" ref={destiantionRef} placeholder="Destinition" />
             </Form.Group>
             </Autocomplete>
             <Row>

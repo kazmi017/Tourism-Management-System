@@ -20,7 +20,6 @@ import Historry from './dashboard/Historry';
 import Hotel from './dashboard/Hotel';
 import Payment from './dashboard/Payment';
 import Solo from './dashboard/Solo';
-import Solob from './dashboard/Solob';
 import Trip from './dashboard/Trip';
 import ForgotPassword from "./examples/ForgotPassword";
 import Lock from "./examples/Lock";
@@ -143,7 +142,6 @@ export default () => (
     <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
     <RouteWithSidebar exact path={Routes.Booking.path} component={Booking} />
     <RouteWithSidebar exact path={Routes.Solo.path} component={Solo} />
-    <RouteWithSidebar exact path={Routes.Solob.path} component={Solob} />
     <RouteWithSidebar exact path={Routes.Car.path} component={Car} />
     <RouteWithSidebar exact path={Routes.Trip.path} component={Trip} />
     <RouteWithSidebar exact path={Routes.Hotel.path} component={Hotel} />
